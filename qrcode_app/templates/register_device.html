@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Device</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Register Device</h2>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <h4>Device Information</h4>
+            <p>Email - {{ email }}</p>
+            <p><strong>IP Address:</strong> {{ ip_address }}</p>
+            <p><strong>MAC Address:</strong> {{ mac_address }}</p>
+            <p><strong>Device Serial Number:</strong> {{ device_serial_no }}</p>
+
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+</body>
+</html>

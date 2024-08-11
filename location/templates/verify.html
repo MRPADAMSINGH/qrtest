@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Device Registration Confirmation</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Device Registered Successfully</h1>
+
+        <div class="alert alert-success">
+            <strong>Device has been successfully registered!</strong>
+        </div>
+
+        <div class="mb-4">
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Timestamp:</strong> {{ timestamp }}</p>
+        </div>
+
+        <h2 class="mt-4">Device Information</h2>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>IP Address:</strong> {{ ip_address }}</li>
+            <li class="list-group-item"><strong>MAC Address:</strong> {{ mac_address }}</li>
+            <li class="list-group-item"><strong>Serial Number:</strong> {{ device_serial_no }}</li>
+        </ul>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Verification</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">QR code verified successfully!</h4>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Timestamp:</strong> {{ timestamp }}</p>
+        </div>
+    </div>
+
+    
+   <div style="margin-left: 10%;">
+    <h2>Device Information</h2>
+    <p>IP Address: {{ ip_address }}</p>
+    <p>MAC Address: {{ mac_address }}</p>
+    <p>Serial Number: {{ device_serial_no }}</p>
+   </div>
+</body>
+</html>

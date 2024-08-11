@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test1 Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Test1 Form</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.date.label_tag }} {{ form.date }}
+                {% if form.date.errors %}<div class="text-danger">{{ form.date.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.location_in.label_tag }} {{ form.location_in }}
+                {% if form.location_in.errors %}<div class="text-danger">{{ form.location_in.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.location_out.label_tag }} {{ form.location_out }}
+                {% if form.location_out.errors %}<div class="text-danger">{{ form.location_out.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.in_time.label_tag }} {{ form.in_time }}
+                {% if form.in_time.errors %}<div class="text-danger">{{ form.in_time.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.range_12pm_user.label_tag }} {{ form.range_12pm_user }}
+                {% if form.range_12pm_user.errors %}<div class="text-danger">{{ form.range_12pm_user.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.range_3pm_user.label_tag }} {{ form.range_3pm_user }}
+                {% if form.range_3pm_user.errors %}<div class="text-danger">{{ form.range_3pm_user.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.out_time.label_tag }} {{ form.out_time }}
+                {% if form.out_time.errors %}<div class="text-danger">{{ form.out_time.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.stay_in_hrs.label_tag }} {{ form.stay_in_hrs }}
+                {% if form.stay_in_hrs.errors %}<div class="text-danger">{{ form.stay_in_hrs.errors }}</div>{% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.status.label_tag }} {{ form.status }}
+                {% if form.status.errors %}<div class="text-danger">{{ form.status.errors }}</div>{% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

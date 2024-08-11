@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">Device Information</h4>
+            <p><strong>IP Address:</strong> {{ ip_address }}</p>
+            <p><strong>Device Serial Number:</strong> {{ device_serial_no }}</p>
+            <h5>Network Interfaces:</h5>
+            <ul class="list-group">
+                {% for info in network_info %}
+                    <li class="list-group-item">
+                        <strong>Interface:</strong> {{ info.interface }}<br>
+                        <strong>Address:</strong> {{ info.address }}<br>
+                        <strong>Netmask:</strong> {{ info.netmask }}<br>
+                        <strong>Broadcast:</strong> {{ info.broadcast }}<br>
+                        <strong>Family:</strong> {{ info.family }}<br>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">No network information available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

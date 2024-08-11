@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Verification</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(checkLocation, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function checkLocation(position) {
+            const userLatitude = position.coords.latitude;
+            const userLongitude = position.coords.longitude;
+            const collegeLocation = {{ college_location|safe }};
+            const distance = calculateDistance(userLatitude, userLongitude, collegeLocation[0], collegeLocation[1]);
+
+            if (distance <= 20.0) {
+                alert("You are within 20 meters of the college location.");
+                window.location.href = "http://127.0.0.1:8000/";
+            } else {
+                alert("You are outside the 20-meter range. Distance: " + distance.toFixed(2) + " meters.");
+            }
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Radius of the Earth in km
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const distance = R * c * 1000; // Distance in meters
+            return distance;
+        }
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">QR Code Verification</h1>
+        <p>QR code verified successfully for {{ email }} on {{ timestamp }}.</p>
+        <button class="btn btn-primary" onclick="getLocation()">Check Location</button>
+    </div>
+</body>
+</html>
