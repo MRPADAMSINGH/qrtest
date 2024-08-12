@@ -17,9 +17,23 @@
         <p>QR code verified successfully for {{ email }}.</p>
         <p><strong>MAC Address:</strong> {{ mac_address }}</p>
         <p><strong>Serial Number:</strong> {{ serial_number }}</p>
+        {% if device_info %}
+        <h3>Device Information</h3>
+        <p><strong>Email:</strong> {{ device_info.email }}</p>
+        <p><strong>MAC Address:</strong> {{ device_info.mac_address }}</p>
+        <p><strong>Serial Number:</strong> {{ device_info.serial_number }}</p>
         <button id="check-location" class="btn btn-primary">Check Location</button>
+        <!-- <button class="btn btn-primary" onclick="getLocation()">Check Location</button> -->
+        {% else %}
+        <p class="text-danger">{{ message }}</p>
+        {% endif %}
+        
+        <br>
+        <div id="result" style="font-size: larger; color: green; display: flex; justify-content: center; align-items: center; text-align: center;"></div>
+
+
+        <!-- <button id="check-location" class="btn btn-primary">Check Location</button> -->
         <div id="map" class="hidden"></div>
-        <div id="result"></div>
     </div>
 
     <script>
