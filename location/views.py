@@ -110,14 +110,26 @@ def verify_location_qr_code(request):
         mac_address = get_mac_address(get_client_ip(request))
         serial_number = get_device_serial_number()
 
-        # Render the verification page with additional context
-        context = {
-            "email": user_email,
-            "timestamp": current_time.strftime("%Y-%m-%d %H:%M:%S"),
-            "college_location": COLLEGE_LOCATION,
-            "mac_address": mac_address,
-            "serial_number": serial_number
-        }
+        device_record = Device.objects.filter(email=user_email, mac_address=mac_address, serial_number=serial_number).first()
+
+        if device_record:
+            context = {
+                "email": user_email,
+                "timestamp": current_time.strftime("%Y-%m-%d %H:%M:%S"),
+                "college_location": COLLEGE_LOCATION,
+                "mac_address": mac_address,
+                "serial_number": serial_number,
+                "device_info": device_record
+            }
+        else:
+            context = {
+                "email": user_email,
+                "timestamp": current_time.strftime("%Y-%m-%d %H:%M:%S"),
+                "college_location": COLLEGE_LOCATION,
+                "mac_address": mac_address,
+                "serial_number": serial_number,
+                "message": "Not match in our record."
+            }
         return render(request, 'location_verification.html', context)
 
     elif request.method == 'POST':
