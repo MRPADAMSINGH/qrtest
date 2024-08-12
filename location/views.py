@@ -19,7 +19,7 @@ from django.utils import timezone
 SECRET_KEY = 'loveyou3000'
 
 # College location coordinates (latitude, longitude)
-COLLEGE_LOCATION = (19.05372983242089, 72.87981542240361)
+COLLEGE_LOCATION = (19.053706817710122, 72.87980643137657)
 
 def calculate_distance(lat1, lon1, lat2, lon2):
     """
